@@ -35,7 +35,7 @@ export default {
 
         </div>
         <div v-if="this.singleBook && Object.keys(this.singleBook).length > 0">
-            <h4 class="text-center my-4">{{ this.singleBook.volumeInfo.title }}</h4>
+            <h4 class="text-center mb-4">{{ this.singleBook.volumeInfo.title }}</h4>
             <p class="mx-5">
                 {{ this.singleBook.volumeInfo.description }}
             </p>
@@ -44,8 +44,10 @@ export default {
             <p>Loading...</p>
         </div>
         <h4 class="text-center">What to do?</h4>
-        <div class="button d-flex gap-3 justify-content-center">
-            <button type="button" class="btn btn-dark">Create a social media post</button>
+        <div class="button d-flex gap-3 justify-content-center mb-2">
+            <router-link :to="{ name: 'social-post', params: { id: this.singleBookId } }">
+                <button type="button" class="btn btn-dark">Create a social media post</button>
+            </router-link>
             <button type="button" class="btn btn-dark">Suggest me related media</button>
         </div>
     </div>
