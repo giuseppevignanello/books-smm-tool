@@ -1,28 +1,37 @@
 .wrapper {
-    height: 80vh;
+    height: 82vh;
     width: 75%;
     border: 1px solid gray;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 0px;
     background: rgb(229, 229, 229);
     overflow-y: scroll;
-    margin-left: 15rem;
+    margin: auto;
+
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        margin-left: 15rem;
+    }
 }
 
 .book_card {
     width: 300px;
-    height: 200px;
+    height: 220px;
     overflow-y: auto;
-}
-
-@media screen and (max-width:450px) {
-    .book_card {
-        width: 220px;
-
-    }
 }
 
 .book_card:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.book_cover {
+    height: 190px;
+    max-width: 130px;
+    object-fit: cover;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
 }

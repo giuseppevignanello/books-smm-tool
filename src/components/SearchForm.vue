@@ -20,16 +20,12 @@ export default {
 }
 </script>
 <template>
-    <form @submit.prevent="handleSubmit">
-        <div class="mb-3">
-            <div class="text-center my-2">
-                <label for="search" class="form-label fw-bold display-5 mt-2">Search a Book or an author</label>
-            </div>
-            <input v-model="searchTerm" type="text" class="form-control w-75 m-auto" name="search" id="search"
-                aria-describedby="helpId">
-            <div class="text-center my-3">
-                <button type="submit" class="btn btn-dark">Search</button>
-            </div>
+    <form @submit.prevent="handleSubmit" class="text-center p-4 border rounded ">
+        <label for="search" class="form-label fw-bold h4 display-5 mb-4">Search a Book or an Author</label>
+        <div class="input-group w-75 m-auto">
+            <input v-model="searchTerm" type="text" class="form-control" name="search" id="search" aria-describedby="helpId"
+                placeholder="Enter search term">
+            <button type="submit" class="btn btn-dark">Search</button>
         </div>
     </form>
 </template>
