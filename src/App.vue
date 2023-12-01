@@ -2,11 +2,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AppHeader from "./components/AppHeader.vue";
+import SideBar from "./components/SideBar.vue"
 
 
 export default defineComponent({
   components: {
     AppHeader,
+    SideBar,
   },
   data() {
 
@@ -21,7 +23,11 @@ export default defineComponent({
 <template>
   <div>
     <AppHeader></AppHeader>
-    <router-view></router-view>
+    <div class="d-flex justify-content-between">
+      <SideBar></SideBar>
+      <router-view></router-view>
+    </div>
+
 
   </div>
 </template>

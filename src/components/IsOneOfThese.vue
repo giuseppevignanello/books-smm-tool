@@ -30,10 +30,10 @@ export default {
         <h3 class="text-center my-3">It's one of these?</h3>
         <div
             class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 mx-4 row-md-cols-4 books_container">
-            <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="card book_card my-1">
+            <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="card bg-light book_card my-1">
                 <router-link class="text-black text-decoration-none" :to="{ name: 'single-book', params: { id: item.id } }">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.volumeInfo.title }}</h5>
+                        <h4 class="card-title display-6 text-center">{{ item.volumeInfo.title }}</h4>
                         <h6 v-for="author in item.volumeInfo.authors" class="card-text text-center">{{ author }}</h6>
 
                         <div class="text-center">{{ formatYear(item.volumeInfo.publishedDate) }} </div>

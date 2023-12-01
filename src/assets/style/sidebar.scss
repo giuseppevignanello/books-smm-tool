@@ -1,0 +1,14 @@
+.sidebar {
+    height: calc(100vh - 50px);
+    width: 170px;
+    position: fixed;
+    left: 0;
+    top: 72px;
+}
+
+.last_search:hover {
+    cursor: pointer;
+    background-color: rgb(201, 199, 199);
+    color: black;
+
+}

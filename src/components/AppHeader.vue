@@ -29,8 +29,7 @@ export default {
         </ul>
 
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-light me-2">Login</button>
-            <button type="button" class="btn btn-light">Sign-up</button>
+            <button type="button" class="btn btn-light">Logout</button>
         </div>
     </header>
 </template>
