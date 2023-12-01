@@ -23,7 +23,7 @@ export default {
     <form @submit.prevent="handleSubmit">
         <div class="mb-3">
             <div class="text-center my-2">
-                <label for="search" class="form-label fw-bold fs-3">Search a Book</label>
+                <label for="search" class="form-label fw-bold display-5 mt-2">Search a Book or an author</label>
             </div>
             <input v-model="searchTerm" type="text" class="form-control w-75 m-auto" name="search" id="search"
                 aria-describedby="helpId">

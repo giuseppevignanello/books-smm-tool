@@ -10,9 +10,16 @@
 }
 
 .book_card {
-    max-width: 300px;
-    max-height: 300px;
+    width: 300px;
+    height: 200px;
     overflow-y: auto;
+}
+
+@media screen and (max-width:450px) {
+    .book_card {
+        width: 220px;
+
+    }
 }
 
 .book_card:hover {

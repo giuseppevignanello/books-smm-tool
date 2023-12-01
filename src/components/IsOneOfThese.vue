@@ -28,7 +28,8 @@ export default {
 <template>
     <div v-show="this.store.searchResults.length > 0">
         <h3 class="text-center my-3">It's one of these?</h3>
-        <div class="d-md-flex justify-content-center gap-3 mx-4 row-md-cols-4 books_container">
+        <div
+            class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 mx-4 row-md-cols-4 books_container">
             <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="card book_card my-1">
                 <router-link class="text-black text-decoration-none" :to="{ name: 'single-book', params: { id: item.id } }">
                     <div class="card-body">
