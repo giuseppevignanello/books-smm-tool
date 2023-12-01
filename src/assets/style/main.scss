@@ -1,16 +1,18 @@
 .wrapper {
-    height: 70vh;
+    height: 80vh;
     width: 75%;
     margin: auto;
     border: 1px solid gray;
     border-radius: 10px;
     box-shadow: 0px 0px 12px 0px;
     background: rgb(229, 229, 229);
+    overflow-y: scroll;
 }
 
-.books_container {
+.book_card {
+    max-width: 300px;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .book_card:hover {
