@@ -29,7 +29,6 @@ export default {
                 get(`${this.store.apiUrlBase} ${searchTerm} &key ${this.store.apiKey}`)
                 .then((response) => {
                     this.store.searchResults = response.data.items;
-
                 })
                 .catch((error) => {
                     console.error("Error", error)

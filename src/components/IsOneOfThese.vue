@@ -28,14 +28,17 @@ export default {
 <template>
     <div v-show="this.store.searchResults.length > 0">
         <h3 class="text-center my-4">It's one of these?</h3>
-        <div class="d-flex justify-content-around gap-3 mx-5 row-cols-4">
-            <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="card book_card">
-                <div class="card-body">
-                    <h4 class="card-title">{{ item.volumeInfo.title }}</h4>
-                    <h6 v-for="author in item.volumeInfo.authors" class="card-text">{{ author }}</h6>
-                    <span>{{ formatYear(item.volumeInfo.publishedDate) }}</span>
-                </div>
+        <div class="d-md-flex justify-content-around gap-3 mx-5 row-md-cols-4 books_container">
+            <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="card book_card my-2">
+                <router-link class="text-black text-decoration-none" :to="{ name: 'single-book', params: { id: item.id } }">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ item.volumeInfo.title }}</h4>
+                        <h6 v-for="author in item.volumeInfo.authors" class="card-text">{{ author }}</h6>
+                        <span>{{ formatYear(item.volumeInfo.publishedDate) }}</span>
+                    </div>
+                </router-link>
             </div>
+
         </div>
         <div class="text-center">
             <button type="button" class="btn btn-dark mt-5">Nope Give me more</button>
