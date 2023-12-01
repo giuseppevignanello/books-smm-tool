@@ -43,6 +43,9 @@ export default {
                         <div class="d-flex flex-column justify-content-center mx-2">
                             <div class="fs- text-center fw-bold">{{ item.volumeInfo.title }}</div>
                             <h6 v-for="author in item.volumeInfo.authors" class="card-text text-center">{{ author }}</h6>
+                            <h6 v-if="item.volumeInfo && item.volumeInfo.publisher" class="card-text text-center">{{
+                                item.volumeInfo.publisher }}</h6>
+                            <h6 v-else> Publisher unknown </h6>
                             <div class="badge fs-6 bg-black mx-4">{{ formatYear(item.volumeInfo.publishedDate) }}
                             </div>
                         </div>

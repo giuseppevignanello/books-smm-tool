@@ -21,10 +21,12 @@ export default {
 </script>
 <template>
     <form @submit.prevent="handleSubmit" class="text-center p-4 border rounded ">
-        <label for="search" class="form-label fw-bold h4 display-5 mb-4">Search a Book or an Author</label>
+        <div class="bg_opacity search_title_container">
+            <label for="search" class="form-label fw-bold h4 display-5 mb-4">Social Media Books</label>
+        </div>
         <div class="input-group w-75 m-auto">
             <input v-model="searchTerm" type="text" class="form-control" name="search" id="search" aria-describedby="helpId"
-                placeholder="Enter search term">
+                placeholder="Search a book or an author">
             <button type="submit" class="btn btn-dark">Search</button>
         </div>
     </form>
