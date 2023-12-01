@@ -9,7 +9,6 @@ export default {
 
         return {
             store,
-
             singleBook: {}
         }
     },
@@ -48,7 +47,9 @@ export default {
             <router-link :to="{ name: 'social-post', params: { id: this.singleBookId } }">
                 <button type="button" class="btn btn-dark">Create a social media post</button>
             </router-link>
-            <button type="button" class="btn btn-dark">Suggest me related media</button>
+            <router-link :to="{ name: 'related-media', params: { id: this.singleBookId } }">
+                <button type="button" class="btn btn-dark">Suggest me related media</button>
+            </router-link>
         </div>
     </div>
 </template>
