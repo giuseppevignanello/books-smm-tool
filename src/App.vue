@@ -2,11 +2,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AppHeader from "./components/AppHeader.vue";
-import axios from 'axios';
+import AppMain from "./components/AppMain.vue";
+
 
 export default defineComponent({
   components: {
-    AppHeader
+    AppHeader,
+    AppMain
   },
   data() {
 
@@ -23,6 +25,7 @@ export default defineComponent({
 <template>
   <div>
     <AppHeader></AppHeader>
+    <AppMain></AppMain>
   </div>
 </template>
 
