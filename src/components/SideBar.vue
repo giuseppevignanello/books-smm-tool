@@ -11,7 +11,7 @@ export default {
 
 <template>
     <div class="sidebar d-none d-md-block bg_opacity text-white ">
-        <h4 class=" my-3 ms-2">Last Searches</h4>
+        <h6 class=" my-3 ms-2">Last Searches</h6>
         <ul class="list-unstyled fs-5">
             <li class="border-bottom last_search">
                 <div class="p-2 ps-3">

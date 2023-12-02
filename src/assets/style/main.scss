@@ -1,8 +1,35 @@
 .wrapper {
     height: 82vh;
-    width: 75%;
-    margin: auto;
+    width: 100%;
+    // margin: auto;
+    overflow-y: auto;
 
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.wrapper {
+    scrollbar-width: thin;
+}
+
+.wrapper::-moz-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+.wrapper::-moz-scrollbar-thumb:hover {
+    background-color: #555;
 }
 
 @media screen and (min-width: 768px) {
@@ -15,6 +42,32 @@
     width: 300px;
     height: 220px;
     overflow-y: auto;
+}
+
+.book_card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.book_card::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+.book_card::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.book_card {
+    scrollbar-width: thin;
+}
+
+.book_card::-moz-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+.book_card::-moz-scrollbar-thumb:hover {
+    background-color: #555;
 }
 
 .book_card:hover {

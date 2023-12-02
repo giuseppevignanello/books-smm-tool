@@ -23,7 +23,7 @@ export default defineComponent({
 <template>
   <div>
     <AppHeader></AppHeader>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex gap-5">
       <SideBar></SideBar>
       <router-view></router-view>
     </div>
