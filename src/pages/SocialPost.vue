@@ -1,9 +1,10 @@
 
 <script>
+
+import axios from 'axios';
+import { store } from '../store.ts';
 export default {
     data() {
-
-
         return {
             socials: [
                 'Instagram',
@@ -11,8 +12,53 @@ export default {
                 'Linkedin',
                 'X',
                 'YouTube'
-            ]
+            ],
+            singleBook: {},
+            response: "",
+            loading: false,
+            store
         }
+    },
+    methods: {
+        async openAICall(social) {
+            const description = this.singleBook.volumeInfo.description;
+            const title = this.singleBook.volumeInfo.title;
+            const author = this.singleBook.volumeInfo.authors[0];
+            this.loading = true;
+            try {
+                const response = await axios.post(this.store.openAIUrl, {
+                    model: this.store.openAIModel,
+                    messages: [
+                        {
+                            role: "user",
+                            content: `Immagina di essere un social media manager e scrivi un post ${social} completo sul libro ${title} di ${author}. Qui ti invio la sinossi del libro: ${description}.`,
+                        },
+                    ],
+                    temperature: this.store.openAITemperature
+                }, {
+                    headers: {
+                        "Content-type": "application/json",
+                        Authorization: `Bearer ${this.store.openAIKey}`,
+                    },
+                });
+                const data = response.data.choices[0].message.content
+                console.log(data)
+                this.response = data
+
+
+
+
+            } catch (error) {
+                console.error("Error making API call:", error);
+
+            } finally {
+                this.loading = false;
+            }
+        }
+    },
+    mounted() {
+        const singleBookId = this.$route.params.id;
+        this.singleBook = this.store.searchResults.find(book => book.id === singleBookId)
     }
 }
 </script>
@@ -30,16 +76,28 @@ export default {
         <h2 class="text-center display-5 fw-semibold mt-3">What social media do you need this post for?</h2>
         <div class="d-flex justify-content-center">
             <ul class="list-unstyled text-center d-flex flex-wrap mt-3 social_icon_container ">
-                <li v-for="social in  socials " class="d-flex  align-items-center gap-2 my-2 mx-3 social_icon">
-                    <div class="social_icon_img d-flex align-items-center">
-                        <img :src="'/img/' + social + '.png'" alt="">
-                    </div>
-                    <div class="text-center fs-3">
-                        {{ social }}
+                <li v-for="social in  socials ">
+                    <div @click="openAICall(social)" class="d-flex  align-items-center gap-2 my-2 mx-3 social_icon">
+                        <div class="social_icon_img d-flex align-items-center">
+                            <img :src="'/img/' + social + '.png'" alt="">
+                        </div>
+                        <div class="text-center fs-3">
+                            {{ social }}
+                        </div>
                     </div>
                 </li>
 
             </ul>
+        </div>
+        <div v-if="loading" class="d-flex justify-content-center mt-3 gap-3 align-items-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>L'operazione potrebbe richiedere qualche secondo...</span>
+        </div>
+        <div v-if="response" class="text-center">
+            <h3>Ecco a te</h3>
+            <p>{{ response }}</p>
         </div>
     </div>
 </template>

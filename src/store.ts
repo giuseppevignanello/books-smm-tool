@@ -1,9 +1,12 @@
 import { reactive } from "vue";
-import axios from "axios";
 
 export const store = reactive({
+  openAITemperature: 0.5,
+  openAIUrl: "https://api.openai.com/v1/chat/completions",
+  openAIModel: "gpt-3.5-turbo",
+  openAIKey: process.env.OPENAI_KEY,
   apiUrlBase: "https://www.googleapis.com/books/v1/volumes?q=",
-  apiKey: "AIzaSyBJRWR4g442X0LJRco_-qyM-c2tAx_hMqs",
+  apiKey: process.env.API_KEY,
   searchResults: [],
   startRange: 0,
   endRange: 3,

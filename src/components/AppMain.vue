@@ -40,6 +40,10 @@ export default {
                 })
         },
 
+    },
+    mounted() {
+        console.log(this.store.apiKey);
+        console.log(this.store.openAIKey)
     }
 
 }
