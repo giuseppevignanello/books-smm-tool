@@ -4,7 +4,15 @@ export default {
     data() {
 
 
-        return {}
+        return {
+            socials: [
+                'Instagram',
+                'Facebook',
+                'Linkedin',
+                'X',
+                'YouTube'
+            ]
+        }
     }
 }
 </script>
@@ -19,24 +27,20 @@ export default {
                 </div>
             </router-link>
         </div>
-        <h3 class="text-center">What social media do you need this post for?</h3>
-        <ul class="list-unstyled text-center mt-3">
-            <li class="display-6 my-4 social_icon">
-                <i class="fa-brands fa-instagram fa-xl"></i> Instagram
-            </li>
-            <li class="display-6 my-4 social_icon">
-                <i class="fa-brands fa-facebook fa-xl"></i> Facebook
-            </li>
-            <li class="display-6 my-4 social_icon">
-                <i class="fa-brands fa-linkedin fa-xl"></i> Linkedin
-            </li>
-            <li class="display-6 my-4 social_icon">
-                <i class="fa-brands fa-tiktok fa-xl"></i> Tiktok
-            </li>
-            <li class="display-6 my-4 social_icon">
-                <i class="fa-brands fa-youtube fa-xl"></i> Youtube
-            </li>
-        </ul>
+        <h2 class="text-center display-5 fw-semibold mt-3">What social media do you need this post for?</h2>
+        <div class="d-flex justify-content-center">
+            <ul class="list-unstyled text-center d-flex flex-wrap mt-3 social_icon_container ">
+                <li v-for="social in  socials " class="d-flex  align-items-center gap-2 my-2 mx-3 social_icon">
+                    <div class="social_icon_img d-flex align-items-center">
+                        <img :src="'/img/' + social + '.png'" alt="">
+                    </div>
+                    <div class="text-center fs-3">
+                        {{ social }}
+                    </div>
+                </li>
+
+            </ul>
+        </div>
     </div>
 </template>
 

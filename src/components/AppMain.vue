@@ -29,7 +29,7 @@ export default {
                 get(`${this.store.apiUrlBase} ${searchTerm} &key ${this.store.apiKey}`)
                 .then((response) => {
                     this.store.searchResults = response.data.items;
-                    console.log(this.store.searchResults)
+
                 })
                 .catch((error) => {
                     console.error("Error", error)

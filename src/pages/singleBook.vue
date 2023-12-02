@@ -16,7 +16,6 @@ export default {
 
         const singleBookId = this.$route.params.id;
         this.singleBook = this.store.searchResults.find(book => book.id === singleBookId)
-        console.log(this.singleBook)
 
     },
 }
