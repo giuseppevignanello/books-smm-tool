@@ -10,6 +10,7 @@ export default {
     },
     data() {
         return {
+
             store
 
         }
@@ -20,17 +21,29 @@ export default {
 
             const year = new Date(date).getFullYear();
             return isNaN(year) ? '' : year.toString();
+        },
+        loadMore() {
+            if (this.store.endRange <= 9) {
+                this.store.startRange += 3;
+                this.store.endRange += 3;
+                this.store.titleCounter++
+            } else {
+                this.store.showResults = false;
+                this.store.titleCounter++
+            }
         }
+
     },
 
 }
 </script>
 <template>
     <div v-show="this.store.searchResults.length > 0">
-        <h3 class="text-center">It's one of these?</h3>
-        <div
+        <h3 class="text-center">{{ this.store.titles[this.store.titleCounter] }}</h3>
+        <div v-if="this.store.showResults"
             class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 mx-3 flex-wrap books_container">
-            <div v-for="(item) in this.store.searchResults.slice(0, 3)" class="book_card my-1">
+            <div v-for="(item) in this.store.searchResults.slice(this.store.startRange, this.store.endRange)"
+                class="book_card my-1">
                 <router-link class="text-black text-decoration-none d-flex flex-column"
                     :to="{ name: 'single-book', params: { id: item.id } }">
                     <div class="d-flex">
@@ -52,10 +65,12 @@ export default {
                     </div>
                 </router-link>
             </div>
-
+        </div>
+        <div v-else class="text-center">
+            <h2> Sorry, we only found these books...Try a more specific search </h2>
         </div>
         <div class="text-center mb-3">
-            <button type="button" class="btn btn-dark mt-5">Nope Give me more</button>
+            <button @click="(loadMore())" type="button" class="btn btn-dark mt-5">Nope Give me more</button>
         </div>
     </div>
 </template>

@@ -25,6 +25,10 @@ export default {
     },
     methods: {
         handleSearch(searchTerm: string) {
+            this.store.startRange = 0;
+            this.store.endRange = 3;
+            this.store.showResults = true;
+            this.store.titleCounter = 0;
             axios.
                 get(`${this.store.apiUrlBase} ${searchTerm} &key ${this.store.apiKey}`)
                 .then((response) => {
