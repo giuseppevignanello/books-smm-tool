@@ -44,9 +44,12 @@ export default {
                         alt="image not available">
                 </div>
                 <div>
-                    <p class="mx-5">
+                    <p v-if="this.singleBook.volumeInfo.description" class="mx-5">
                         {{ this.singleBook.volumeInfo.description }}
                     </p>
+                    <h4 v-else class="mx-5">
+                        Sorry, but we do not have any description for this volume
+                    </h4>
                 </div>
             </div>
 

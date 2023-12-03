@@ -95,9 +95,11 @@ export default {
             </div>
             <span>L'operazione potrebbe richiedere qualche secondo...</span>
         </div>
-        <div v-if="response" class="text-center">
-            <h3>Ecco a te</h3>
-            <p>{{ response }}</p>
+        <div v-if="response" class="text-center mt-3">
+            <h3>Ecco a te!</h3>
+            <div class="m-auto social_post_response mb-5">
+                <p>{{ response }}</p>
+            </div>
         </div>
     </div>
 </template>
