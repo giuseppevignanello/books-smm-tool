@@ -20,6 +20,7 @@ export default {
         }
     },
     methods: {
+
         async openAICall(social) {
             const description = this.singleBook.volumeInfo.description;
             const title = this.singleBook.volumeInfo.title;

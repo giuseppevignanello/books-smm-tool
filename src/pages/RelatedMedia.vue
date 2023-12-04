@@ -1,10 +1,77 @@
 
 <script>
+import { store } from "../store.ts"
 export default {
     data() {
 
 
-        return {}
+        return {
+            store,
+            numOfMedia: 0,
+            language: "italian",
+            mediaTypes: [],
+            age: 0
+        }
+    },
+    methods: {
+        updateMediaTypes(event) {
+
+            const checkboxValue = event.target.value;
+
+            if (event.target.checked) {
+
+                this.mediaTypes.push(checkboxValue);
+            } else {
+
+                const index = this.mediaTypes.indexOf(checkboxValue);
+                if (index !== -1) {
+                    this.mediaTypes.splice(index, 1);
+                }
+            }
+        },
+        async openAICall() {
+            const description = this.singleBook.volumeInfo.description;
+            const title = this.singleBook.volumeInfo.title;
+            const author = this.singleBook.volumeInfo.authors[0];
+            console.log(this.numOfMedia);
+            console.log(this.language);
+            console.log(this.mediaTypes);
+            console.log(this.age)
+            this.loading = true;
+            // try {
+            //     const response = await axios.post(this.store.openAIUrl, {
+            //         model: this.store.openAIModel,
+            //         messages: [
+            //             {
+            //                 role: "user",
+            //                 content: ``,
+            //             },
+            //         ],
+            //         temperature: this.store.openAITemperature
+            //     }, {
+            //         headers: {
+            //             "Content-type": "application/json",
+            //             Authorization: `Bearer ${this.store.openAIKey}`,
+            //         },
+            //     });
+            //     const data = response.data.choices[0].message.content
+            //     console.log(data)
+            //     this.response = data
+
+
+
+
+            // } catch (error) {
+            //     console.error("Error making API call:", error);
+
+            // } finally {
+            //     this.loading = false;
+            // }
+        }
+    },
+    mounted() {
+        const singleBookId = this.$route.params.id;
+        this.singleBook = this.store.searchResults.find(book => book.id === singleBookId)
     }
 }
 </script>
@@ -20,23 +87,27 @@ export default {
             </router-link>
         </div>
         <h3 class="text-center mt-2">Search Related Media</h3>
-        <form>
+        <form @submit.prevent="openAICall()">
             <div class="mb-3 d-flex flex-column align-items-center">
                 <label for=" mediaType" class="form-label fw-bold">Media Type:</label>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="books" />
+                    <input type="checkbox" class="form-check-input" id="books" v-on:change="updateMediaTypes"
+                        value="books" />
                     <label class="form-check-label" for="books">Books</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="movies" />
+                    <input type="checkbox" class="form-check-input" id="movies" v-on:change="updateMediaTypes"
+                        value="movies" />
                     <label class="form-check-label" for="movies">Movies</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="albums" />
+                    <input type="checkbox" class="form-check-input" id="albums" value="albums"
+                        v-on:change="updateMediaTypes" />
                     <label class="form-check-label" for="albums">Albums</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="tv-show" />
+                    <input type="checkbox" value="tv-show" class="form-check-input" id="tv-show"
+                        v-on:change="updateMediaTypes" />
                     <label class="form-check-label" for="tv-show">TV Shows</label>
                 </div>
 
