@@ -1,6 +1,7 @@
 
 <script>
 import { store } from "../store.ts"
+import axios from 'axios'
 export default {
     data() {
 
@@ -10,7 +11,9 @@ export default {
             numOfMedia: 0,
             language: "italian",
             mediaTypes: [],
-            age: 0
+            age: 0,
+            response: "",
+            loading: false,
         }
     },
     methods: {
@@ -33,40 +36,37 @@ export default {
             const description = this.singleBook.volumeInfo.description;
             const title = this.singleBook.volumeInfo.title;
             const author = this.singleBook.volumeInfo.authors[0];
-            console.log(this.numOfMedia);
-            console.log(this.language);
-            console.log(this.mediaTypes);
-            console.log(this.age)
+            const lang = this.language == 'italian' ? 'Solo opere in italiano.' : 'Puoi scegliere opere da tutto il mondo.';
             this.loading = true;
-            // try {
-            //     const response = await axios.post(this.store.openAIUrl, {
-            //         model: this.store.openAIModel,
-            //         messages: [
-            //             {
-            //                 role: "user",
-            //                 content: ``,
-            //             },
-            //         ],
-            //         temperature: this.store.openAITemperature
-            //     }, {
-            //         headers: {
-            //             "Content-type": "application/json",
-            //             Authorization: `Bearer ${this.store.openAIKey}`,
-            //         },
-            //     });
-            //     const data = response.data.choices[0].message.content
-            //     console.log(data)
-            //     this.response = data
+            try {
+                const response = await axios.post(this.store.openAIUrl, {
+                    model: this.store.openAIModel,
+                    messages: [
+                        {
+                            role: "user",
+                            content: `Dammi ${this.numOfMedia} ${this.mediaTypes.join(' o ')} correlati a ${title} di ${author}. ${lang} Solo opere uscite negli ultimi ${this.age} anni. Qui la descrizione del libro: ${description}`,
+                        },
+                    ],
+                    temperature: this.store.openAITemperature
+                }, {
+                    headers: {
+                        "Content-type": "application/json",
+                        Authorization: `Bearer ${this.store.openAIKey} `,
+                    },
+                });
+                const data = response.data.choices[0].message.content
+                console.log(data)
+                this.response = data
 
 
 
 
-            // } catch (error) {
-            //     console.error("Error making API call:", error);
+            } catch (error) {
+                console.error("Error making API call:", error);
 
-            // } finally {
-            //     this.loading = false;
-            // }
+            } finally {
+                this.loading = false;
+            }
         }
     },
     mounted() {
@@ -92,21 +92,21 @@ export default {
                 <label for=" mediaType" class="form-label fw-bold">Media Type:</label>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="books" v-on:change="updateMediaTypes"
-                        value="books" />
+                        value="libri" />
                     <label class="form-check-label" for="books">Books</label>
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="movies" v-on:change="updateMediaTypes"
-                        value="movies" />
+                        value="film" />
                     <label class="form-check-label" for="movies">Movies</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="albums" value="albums"
+                    <input type="checkbox" class="form-check-input" id="albums" value="album"
                         v-on:change="updateMediaTypes" />
                     <label class="form-check-label" for="albums">Albums</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" value="tv-show" class="form-check-input" id="tv-show"
+                    <input type="checkbox" value="tv show" class="form-check-input" id="tv-show"
                         v-on:change="updateMediaTypes" />
                     <label class="form-check-label" for="tv-show">TV Shows</label>
                 </div>
@@ -149,6 +149,18 @@ export default {
                 <button type="submit" class="btn btn-dark">Search Related Media</button>
             </div>
         </form>
+        <div v-if="loading" class="d-flex justify-content-center mt-3 gap-3 align-items-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <span>L'operazione potrebbe richiedere qualche secondo...</span>
+        </div>
+        <div v-if="response" class="text-center mt-3">
+            <h3>Ecco a te!</h3>
+            <div class="m-auto social_post_response mb-5">
+                <p>{{ response }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
