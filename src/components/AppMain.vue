@@ -29,6 +29,12 @@ export default {
             this.store.endRange = 3;
             this.store.showResults = true;
             this.store.titleCounter = 0;
+
+            //store search il local storage
+            const savedSearchTerms = JSON.parse(localStorage.getItem('searchTerms') || '[]');
+            savedSearchTerms.push(searchTerm);
+            localStorage.setItem('searchTerms', JSON.stringify(savedSearchTerms));
+
             axios.
                 get(`${this.store.apiUrlBase} ${searchTerm} &key ${this.store.apiKey}`)
                 .then((response) => {

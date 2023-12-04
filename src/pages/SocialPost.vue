@@ -75,7 +75,7 @@ export default {
         </div>
         <h2 class="text-center display-5 fw-semibold mt-3">What social media do you need this post for?</h2>
         <div class="d-flex justify-content-center">
-            <ul class="list-unstyled text-center d-flex flex-wrap mt-3 social_icon_container ">
+            <ul class="list-unstyled text-center d-md-flex justify-content-center flex-wrap mt-3 social_icon_container ">
                 <li v-for="social in  socials ">
                     <div @click="openAICall(social)" class="d-flex  align-items-center gap-2 my-2 mx-3 social_icon">
                         <div class="social_icon_img d-flex align-items-center">

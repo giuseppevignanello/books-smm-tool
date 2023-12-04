@@ -30,6 +30,11 @@
     border-radius: 8px;
 }
 
+.social_post_response p {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
 @media screen and (max-width: 768px) {
     .social_post_response {
         width: 75%;

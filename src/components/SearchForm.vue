@@ -25,8 +25,8 @@ export default {
             <label for="search" class="form-label fw-bold display-4 mb-5">Social Media Books</label>
         </div>
         <div class="input-group w-75 m-auto">
-            <input v-model="searchTerm" type="text" class="form-control mt-2" name="search" id="search"
-                aria-describedby="helpId" placeholder="Search a book or an author">
+            <input v-model="searchTerm" type="text" class="form-control" name="search" id="search" aria-describedby="helpId"
+                placeholder="Search a book or an author">
             <button type="submit" class="btn btn-dark">Search</button>
         </div>
     </form>
