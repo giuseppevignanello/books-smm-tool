@@ -86,6 +86,14 @@ export default {
                 </div>
             </router-link>
         </div>
+
+        <div class="bg-danger text-white rounded p-2 warning_message m-2">Warning! This technology is in an experimental
+            phase. The
+            information may
+            be inaccurate, always verify before using them
+
+        </div>
+
         <h3 class="text-center mt-2">Search Related Media</h3>
         <form @submit.prevent="openAICall()">
             <div class="mb-3 d-flex flex-column align-items-center">
