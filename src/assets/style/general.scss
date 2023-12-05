@@ -1,6 +1,6 @@
 #app {
     height: 100vh;
-    background-color: rgb(0 158 255 / 15%)
+    background-color: rgb(106 198 255 / 22%);
 }
 
 body {
@@ -9,4 +9,12 @@ body {
 
 .bg_opacity {
     background-color: rgba(0, 0, 0, 0.501);
+}
+
+.text_box {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    background-color: whitesmoke;
 }

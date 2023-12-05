@@ -32,9 +32,20 @@ export default {
             </router-link>
 
         </div>
+
         <div v-if="this.singleBook && Object.keys(this.singleBook).length > 0">
-            <h4 class="text-center fw-bold display-4 mb-5">{{ this.singleBook.volumeInfo.title }}</h4>
-            <div class="d-md-flex w-75 m-auto align-items-center">
+            <h4 class="text-center fw-bold display-4 mb-4">{{ this.singleBook.volumeInfo.title }}</h4>
+
+            <h4 class="text-center">What to do?</h4>
+            <div class="button d-flex gap-3 justify-content-center mb-2">
+                <router-link :to="{ name: 'social-post', params: { id: this.singleBookId } }">
+                    <button type="button" class="btn btn-dark">Create a social media post</button>
+                </router-link>
+                <router-link :to="{ name: 'related-media', params: { id: this.singleBookId } }">
+                    <button type="button" class="btn btn-dark">Suggest me related media</button>
+                </router-link>
+            </div>
+            <div class="d-md-flex w-75 m-auto align-items-center gap-3 mb-3">
                 <div class="text-center">
                     <img v-if="singleBook.volumeInfo && singleBook.volumeInfo.imageLinks && singleBook.volumeInfo.imageLinks.thumbnail"
                         class="book_cover text-center" :src="singleBook.volumeInfo.imageLinks.thumbnail"
@@ -43,7 +54,7 @@ export default {
                         src="https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg"
                         alt="image not available">
                 </div>
-                <div>
+                <div class="text_box">
                     <p v-if="this.singleBook.volumeInfo.description" class="mx-5">
                         {{ this.singleBook.volumeInfo.description }}
                     </p>
@@ -57,15 +68,7 @@ export default {
         <div v-else>
             <p>Loading...</p>
         </div>
-        <h4 class="text-center">What to do?</h4>
-        <div class="button d-flex gap-3 justify-content-center mb-2">
-            <router-link :to="{ name: 'social-post', params: { id: this.singleBookId } }">
-                <button type="button" class="btn btn-dark">Create a social media post</button>
-            </router-link>
-            <router-link :to="{ name: 'related-media', params: { id: this.singleBookId } }">
-                <button type="button" class="btn btn-dark">Suggest me related media</button>
-            </router-link>
-        </div>
+
     </div>
 </template>
 
