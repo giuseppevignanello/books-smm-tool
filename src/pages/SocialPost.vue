@@ -16,6 +16,9 @@ export default {
             singleBook: {},
             response: "",
             loading: false,
+            loadingTextList: ["L'operazione potrebbe richiedere qualche secondo...", "Sto scrivendo il post", "Non scappare...", "Ancora un momentino..."],
+            loadingIndex: 0,
+            loadingText: "",
             store
         }
     },
@@ -26,6 +29,15 @@ export default {
             const title = this.singleBook.volumeInfo.title;
             const author = this.singleBook.volumeInfo.authors[0];
             this.loading = true;
+            setInterval(() => {
+                if (this.loadingIndex <= this.loadingTextList.length) {
+                    this.loadingIndex++;
+                    this.loadingText = this.loadingTextList[this.loadingIndex];
+                } else {
+                    this.loadingIndex = 0;
+                    this.loadingText = this.loadingTextList[this.loadingIndex];
+                }
+            }, 2000);
             try {
                 const response = await axios.post(this.store.openAIUrl, {
                     model: this.store.openAIModel,
@@ -43,7 +55,6 @@ export default {
                     },
                 });
                 const data = response.data.choices[0].message.content
-                console.log(data)
                 this.response = data
 
 
@@ -58,6 +69,8 @@ export default {
         }
     },
     mounted() {
+        this.loadingText = this.loadingTextList[this.loadingIndex];
+
         const singleBookId = this.$route.params.id;
         this.singleBook = this.store.searchResults.find(book => book.id === singleBookId)
     }
@@ -94,10 +107,10 @@ export default {
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-            <span>L'operazione potrebbe richiedere qualche secondo...</span>
+            <span>{{ loadingText }}</span>
         </div>
         <div v-if="response" class="text-center mt-3">
-            <h3>Ecco a te!</h3>
+            <h3>Here you are!</h3>
             <div class="m-auto social_post_response mb-5">
                 <p>{{ response }}</p>
             </div>

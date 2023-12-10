@@ -11,7 +11,7 @@ export default {
 
 <template>
     <div class="appFooter bg_opacity text-white text-center py-3">
-        Copyright Giuseppe Vignanello
+        Copyright <i class="fa-regular fa-copyright"></i> Giuseppe Vignanello
     </div>
 </template>
 

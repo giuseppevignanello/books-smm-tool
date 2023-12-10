@@ -23,9 +23,9 @@ export default {
                     Home
                 </a>
             </li>
-
+            <!-- 
             <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">About</a></li> -->
         </ul>
 
         <div class="col-md-3 text-end">

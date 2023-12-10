@@ -5,7 +5,6 @@ import IsOneOfThese from './IsOneOfThese.vue';
 import axios from 'axios';
 
 
-
 export default {
 
     name: "AppMain",
@@ -34,7 +33,7 @@ export default {
             const savedSearchTerms = JSON.parse(localStorage.getItem('searchTerms') || '[]');
             savedSearchTerms.push(searchTerm);
             localStorage.setItem('searchTerms', JSON.stringify(savedSearchTerms));
-
+            this.store.searchOccured = true;
             axios.
                 get(`${this.store.apiUrlBase} ${searchTerm} &key ${this.store.apiKey}`)
                 .then((response) => {

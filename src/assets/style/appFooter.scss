@@ -5,3 +5,13 @@
     left: 230px;
     height: 50px;
 }
+
+
+
+
+@media screen and (max-width: 768px) {
+    .appFooter {
+        width: 100%;
+        left: 0;
+    }
+}

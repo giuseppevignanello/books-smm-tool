@@ -19,5 +19,6 @@ export const store = reactive({
     "Last Chance",
     "",
   ],
+  searchOccured: false,
   //   loading: true
 });
